@@ -7,26 +7,18 @@ const watchDir = './images'
 let watcher;
 let images = [];
 let duration = 5;
+let doTimeOut=false;
+let nextImage = '';
 
 const $img = document.querySelector('.image');
 
-const handleFiles = (err,files) => {
-  files.forEach(file => {
-      images.push(`${watchDir}/${file}`)
-    }
-  );
-}
-
 const showImage = () => {
-	let image = images[Math.floor(Math.random()*images.length)];
-  $img.setAttribute('src',image);
+  $img.setAttribute('src',nextImage);
+  nextImage = getRandomImage();
   setTimeout(showImage, duration*1000);
 }
 
-const onNewImage = path => {
-  console.log('File', path, 'has been added');
-  images.push(path);
-}
+const getRandomImage = () => images[Math.floor(Math.random()*images.length)];
 
 const setWatcher = () => {
   watcher = chokidar.watch(watchDir, {
@@ -36,8 +28,10 @@ const setWatcher = () => {
   watcher.on('add', onNewImage)
 }
 
-// Something to use when events are received.
-let log = console.log.bind(console);
+const onNewImage = path => {
+  images.push(path);
+  nextImage = path;
+}
 
 setWatcher();
 showImage();
