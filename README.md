@@ -4,7 +4,9 @@
 
 ## Auto ipad import workflow
 * Dubbelklikken en installeren
-* via 'Image Capture' de automator task triggeren
+* Pad aanpassen waar de foto's terechtkomen
+* Pad naar het shellscript aanpassen
+* Opslaan en starten
 * De automator task haalt de nieuwe foto's op, triggert een shellscript, wacht 5 seconden en start dan opnieuw.
 
 ## transpose.sh
