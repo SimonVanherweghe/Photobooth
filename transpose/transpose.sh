@@ -6,5 +6,5 @@ do
 	convert shaved.jpg -crop 648x644 +repage +adjoin part.jpg
 	montage -mode concatenate part-*.jpg "$f"
 	base=$(basename "$f")
-	mv "$f" "/Path/to/imagesdir/$base"
+	mv "$f" "slideshow/images/path/$base"
 done
